@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Condition Works</title>
+<meta name="description" content="Most solo operators shouldn't build anything custom. A paid diagnostic maps your back office task by task and hands you one written answer you keep: patch, buy, or build. The intro call is free." />
+<meta name="theme-color" content="#F7F6F1" />
+<meta property="og:title" content="Condition Works" />
+<meta property="og:description" content="Most solo operators shouldn't build anything custom. A paid diagnostic maps your back office task by task and hands you one written answer you keep: patch, buy, or build. The intro call is free." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.conditionworks.ai/" />
+<meta property="og:image" content="https://www.conditionworks.ai/assets/og-image.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="canonical" href="https://www.conditionworks.ai/" />
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="256x256" href="assets/favicon.png" />
+<link rel="apple-touch-icon" href="assets/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,500;0,8..60,600;1,8..60,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#F7F6F1;
+    --surface:#FFFFFF;
+    --hunter:#185D2E;
+    --hunter-deep:#0F3E1F;
+    --hunter-soft:#EAF0EC;
+    --navy:#00223F;
+    --navy-soft:#33455F;
+    --ink:#16202E;
+    --ink-soft:#475149;
+    --ink-faint:#8B928A;
+    --line:#E5E2D8;
+    --line-strong:#D8D4C7;
+    --manila:#E6DBBE;
+    --manila-edge:#D6C9A4;
+    --manila-tint:#F2ECDC;
+    --mint:#86E0AE;
+    --serif:'Source Serif 4',Georgia,serif;
+    --sans:'Inter',system-ui,sans-serif;
+    --mono:'JetBrains Mono',monospace;
+    --r-sm:8px; --r-md:12px;
+    --maxw:1080px; --colw:660px;
+    --ease:cubic-bezier(.22,1,.36,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:var(--sans);font-size:17px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--hunter);color:#fff}
+  img{max-width:100%}
+  p{max-width:68ch}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  section{padding:80px 0}
+  section[id]{scroll-margin-top:72px}
+  .divider{height:1px;background:var(--line);max-width:var(--maxw);margin:0 auto}
+
+  h1,h2{font-family:var(--serif);color:var(--navy);font-weight:600;letter-spacing:-0.015em}
+  h1{font-size:clamp(2.3rem,5.2vw,3.6rem);line-height:1.05;text-wrap:balance}
+  h2{font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.12}
+  h3{font-family:var(--sans);font-weight:600;color:var(--navy);font-size:1.16rem;line-height:1.3}
+
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--mono);font-weight:500;font-size:0.8rem;
+    letter-spacing:0.12em;text-transform:uppercase;color:var(--hunter);
+    margin-bottom:20px;
+  }
+  .eyebrow svg{width:16px;height:14px;flex:none}
+
+  .actions{display:flex;flex-wrap:wrap;gap:12px}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:9px;
+    font-family:var(--sans);font-size:0.97rem;font-weight:600;
+    min-height:44px;padding:12px 22px;border-radius:var(--r-sm);
+    text-decoration:none;border:1px solid transparent;
+    transition:background .2s var(--ease),border-color .2s var(--ease),box-shadow .2s var(--ease),transform .14s var(--ease);
+  }
+  .btn:active{transform:scale(.98)}
+  .btn-primary{background:var(--hunter);color:#fff;box-shadow:0 1px 2px rgba(15,62,31,.2)}
+  .btn-primary:hover{background:var(--hunter-deep);box-shadow:0 6px 16px rgba(15,62,31,.22)}
+  .btn-ghost{background:transparent;color:var(--navy);border-color:var(--line-strong)}
+  .btn-ghost:hover{border-color:var(--navy);background:rgba(0,34,63,.03)}
+
+  a:focus-visible,button:focus-visible{outline:2px solid var(--hunter);outline-offset:3px;border-radius:4px}
+  .how a:focus-visible,.close a:focus-visible,.stickybar a:focus-visible{outline-color:#fff}
+
+  .skip{
+    position:absolute;left:-9999px;top:0;z-index:60;
+    background:var(--navy);color:#fff;font-weight:600;font-size:0.95rem;
+    padding:10px 18px;border-radius:0 0 var(--r-sm) 0;text-decoration:none;
+  }
+  .skip:focus-visible{left:0;outline-color:var(--navy);outline-offset:2px}
+
+  /* ---------- nav ---------- */
+  .nav{
+    position:sticky;top:0;z-index:40;
+    background:rgba(247,246,241,.85);
+    -webkit-backdrop-filter:saturate(140%) blur(10px);
+    backdrop-filter:saturate(140%) blur(10px);
+    border-bottom:1px solid transparent;
+    transition:border-color .25s var(--ease);
+  }
+  .nav.scrolled{border-color:var(--line)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;height:60px}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:0}
+  .brand .logo-folder{height:32px;width:auto;display:block}
+  .brand .logo-word{height:21px;width:auto;display:block}
+  .nav .btn{min-height:0;padding:9px 16px;font-size:0.9rem}
+
+  /* ---------- hero ---------- */
+  .hero{padding:clamp(44px,7vw,72px) 0 64px;text-align:center}
+  .hero-col{max-width:780px;margin:0 auto}
+  .hero h1{max-width:18ch;margin:0 auto 18px}
+  .hero .lede{font-size:clamp(1.02rem,1.4vw,1.15rem);color:var(--ink-soft);max-width:56ch;margin:0 auto 16px}
+  .hero .offer{font-weight:600;color:var(--navy);font-size:1.06rem;margin:0 auto 22px;max-width:none}
+  .hero .actions{justify-content:center}
+
+  /* ---------- recognition ---------- */
+  .recognition .col{max-width:var(--colw);margin:0 auto}
+  .recognition h2{margin-bottom:22px}
+  .recognition p{color:var(--ink-soft);font-size:1.08rem;margin-bottom:18px}
+  .recognition p strong{color:var(--navy);font-weight:600}
+  .pull{
+    font-family:var(--serif);font-weight:500;font-size:clamp(1.35rem,3vw,1.9rem);
+    line-height:1.35;color:var(--navy);letter-spacing:-0.01em;
+    border-left:3px solid var(--hunter);padding:6px 0 6px 22px;margin:30px 0;
+  }
+  .qlist{list-style:none;margin:6px 0 22px}
+  .qlist li{
+    display:flex;align-items:baseline;gap:12px;
+    padding:12px 2px;border-top:1px solid var(--line);
+    color:var(--navy);font-weight:500;font-size:1.05rem;
+  }
+  .qlist li:last-child{border-bottom:1px solid var(--line)}
+  .qlist svg{width:15px;height:13px;flex:none;transform:translateY(1px)}
+  .recognition .outro{color:var(--ink-soft)}
+  .recognition .outro a{color:var(--hunter);font-weight:600;text-decoration:none}
+  .recognition .outro a:hover{text-decoration:underline}
+
+  /* ---------- how we work (navy) ---------- */
+  .how{background:var(--navy)}
+  .how .eyebrow{color:var(--mint)}
+  .how h2{color:#fff}
+  .how-head{max-width:var(--colw);margin:0 auto 56px;text-align:center}
+  .how-head p{color:rgba(255,255,255,.82);font-size:1.08rem;margin:18px auto 0}
+  .flow{
+    list-style:none;display:grid;grid-template-columns:repeat(4,1fr);align-content:start;
+    max-width:1032px;margin:0 auto;
+    border:1px solid rgba(255,255,255,.14);border-radius:var(--r-md);
+    background:rgba(255,255,255,.03);overflow:hidden;
+  }
+  .step{padding:30px 26px 34px;border-right:1px solid rgba(255,255,255,.12)}
+  .step:last-child{border-right:none}
+  .step .num{font-family:var(--mono);font-weight:500;font-size:0.8rem;letter-spacing:0.12em;color:var(--mint);display:block;margin-bottom:16px}
+  .step h3{color:#fff;margin-bottom:10px;display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+  .fee{
+    font-family:var(--mono);font-weight:500;font-size:0.72rem;color:var(--mint);
+    border:1px solid rgba(134,224,174,.55);border-radius:999px;
+    padding:1px 8px;line-height:1.5;
+  }
+  .step p{color:rgba(255,255,255,.78);font-size:0.97rem;line-height:1.55}
+  .how-cta{display:flex;justify-content:center;margin-top:48px}
+  .btn-onnavy{background:#fff;color:var(--navy)}
+  .btn-onnavy:hover{background:var(--paper)}
+
+  /* ---------- bio (manila folder panel) ---------- */
+  .bio{padding-top:96px}
+  .panel{
+    position:relative;max-width:760px;margin:0 auto;
+    background:var(--manila-tint);border:1px solid var(--manila-edge);
+    border-radius:0 var(--r-md) var(--r-md) var(--r-md);
+    padding:34px 36px 36px;
+    transition:transform .25s var(--ease),box-shadow .25s var(--ease);
+  }
+  .panel:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(22,32,46,.07)}
+  .folder-tab{
+    position:absolute;top:-32px;left:-1px;height:33px;
+    display:inline-flex;align-items:center;gap:8px;padding:0 18px;
+    background:var(--manila-tint);border:1px solid var(--manila-edge);border-bottom:none;
+    border-radius:10px 10px 0 0;
+    font-family:var(--mono);font-weight:500;font-size:0.8rem;
+    letter-spacing:0.12em;text-transform:uppercase;color:var(--hunter);
+    white-space:nowrap;
+  }
+  .folder-tab svg{width:15px;height:13px;flex:none}
+  .panel h2{margin-bottom:6px}
+  .panel .role{font-family:var(--mono);font-weight:500;font-size:0.8rem;letter-spacing:0.05em;color:var(--ink-soft);margin-bottom:20px}
+  .panel .bio-p{color:var(--ink-soft);font-size:1.05rem}
+
+  /* ---------- diagnostic cards ---------- */
+  .get{padding-bottom:72px}
+  .get-head{text-align:center;max-width:var(--colw);margin:0 auto 64px}
+  .get-head .eyebrow{justify-content:center}
+  .get-head p{color:var(--ink-soft);font-size:1.08rem;margin:18px auto 0}
+  .get-head strong{color:var(--navy);font-weight:600}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-content:start}
+  .card{
+    position:relative;background:var(--surface);border:1px solid var(--line);
+    border-radius:0 var(--r-md) var(--r-md) var(--r-md);
+    padding:26px 26px 30px;margin-top:27px;
+    transition:transform .25s var(--ease),box-shadow .25s var(--ease),border-color .25s var(--ease);
+  }
+  .card:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(22,32,46,.07);border-color:var(--line-strong)}
+  .ctab{
+    position:absolute;top:-27px;left:-1px;height:28px;
+    display:inline-flex;align-items:center;padding:0 15px;
+    background:var(--manila);border:1px solid var(--manila-edge);border-bottom:none;
+    border-radius:8px 8px 0 0;
+    font-family:var(--mono);font-weight:500;font-size:0.72rem;letter-spacing:0.1em;color:var(--ink);
+  }
+  .card h3{margin-bottom:10px}
+  .card p{color:var(--ink-soft);font-size:0.97rem;line-height:1.55}
+
+  /* ---------- vendor-neutral pull-quote ---------- */
+  .vnb{padding:24px 0 72px}
+  .vnb p{
+    font-family:var(--serif);font-style:italic;font-weight:500;
+    font-size:clamp(1.4rem,2.8vw,1.95rem);
+    line-height:1.4;color:var(--navy);letter-spacing:-0.01em;
+    max-width:30ch;margin:0 auto;
+    border-left:3px solid var(--hunter);padding:6px 0 6px 24px;
+  }
+
+  /* ---------- fit ---------- */
+  .fit-head{text-align:center;max-width:var(--colw);margin:0 auto 44px}
+  .fit-head .eyebrow{justify-content:center}
+  .fit-head p{color:var(--ink-soft);font-size:1.08rem;margin:18px auto 0;max-width:56ch}
+  .fit-card{
+    max-width:620px;margin:0 auto;
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);
+    padding:30px 30px;
+  }
+  .fit-card ul{list-style:none}
+  .fit-card li{
+    display:flex;gap:13px;align-items:flex-start;
+    padding:12px 0;border-top:1px solid var(--line);
+    color:var(--ink-soft);font-size:1.02rem;line-height:1.5;
+  }
+  .fit-card li:first-child{border-top:none;padding-top:0}
+  .fit-card li:last-child{padding-bottom:0}
+  .fit-card li svg{width:18px;height:18px;flex:none;margin-top:3px}
+  .fit-out{text-align:center;margin:28px auto 0;color:var(--navy);font-weight:600;font-size:1.08rem}
+  .fit-out a{color:var(--hunter);text-decoration:none}
+  .fit-out a:hover{text-decoration:underline}
+
+  /* ---------- close (hunter) ---------- */
+  .close{background:var(--hunter);text-align:center}
+  .close .eyebrow{color:var(--mint)}
+  .close h2{color:#fff;margin-bottom:20px}
+  .close-col{max-width:680px;margin:0 auto}
+  .close .ask{color:rgba(255,255,255,.88);font-size:1.12rem;margin:0 auto 36px;max-width:52ch}
+  .close .ask strong{color:#fff;font-weight:600}
+  .tcard{max-width:600px;margin:0 auto 36px;text-align:left}
+  .tcard blockquote{
+    font-family:var(--serif);font-style:italic;font-weight:500;
+    font-size:clamp(1.2rem,2.2vw,1.4rem);line-height:1.45;color:#fff;
+    letter-spacing:-0.01em;margin-bottom:16px;
+    border-left:3px solid var(--mint);padding:4px 0 4px 20px;
+  }
+  .tcard figcaption{padding-left:23px}
+  .tcard .who{display:block;font-weight:600;color:#fff;font-size:0.97rem}
+  .tcard .meta{display:block;font-family:var(--mono);font-weight:500;font-size:0.78rem;letter-spacing:0.04em;color:rgba(255,255,255,.78);margin-top:3px}
+  .close .actions{justify-content:center}
+  .btn-onhunter{background:#fff;color:var(--hunter-deep)}
+  .btn-onhunter:hover{background:var(--paper);box-shadow:0 8px 22px rgba(0,0,0,.18)}
+  .btn-ghost-inv{background:transparent;color:#fff;border-color:rgba(255,255,255,.45)}
+  .btn-ghost-inv:hover{border-color:#fff;background:rgba(255,255,255,.08)}
+
+  /* ---------- footer ---------- */
+  footer{padding:52px 0 60px;border-top:1px solid var(--line)}
+  .foot-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px}
+  .foot-brand{display:flex;align-items:center;gap:10px}
+  .foot-brand .logo-folder{height:28px;width:auto;display:block}
+  .foot-brand .logo-word{height:18px;width:auto;display:block}
+  .foot-meta{font-family:var(--mono);font-weight:500;font-size:0.8rem;color:var(--ink-soft);text-align:right;line-height:1.8}
+  .foot-meta a{color:var(--hunter);text-decoration:none}
+  .foot-meta a:hover{text-decoration:underline}
+
+  /* ---------- sticky booking bar (mobile) ----------
+     To remove the bar entirely: delete the one line
+     `.stickybar{display:block}` inside @media(max-width:880px) below. */
+  .stickybar{
+    position:fixed;left:0;right:0;bottom:0;z-index:50;
+    display:none;
+    background:var(--hunter);
+    padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+    transform:translateY(105%);visibility:hidden;
+    transition:transform .3s var(--ease),visibility .3s;
+    box-shadow:0 -4px 18px rgba(22,32,46,.18);
+  }
+  .stickybar.show{transform:translateY(0);visibility:visible}
+  .stickybar .btn{
+    width:100%;max-width:420px;margin:0 auto;display:flex;
+    background:#fff;color:var(--hunter-deep);border-radius:999px;
+  }
+
+  /* ---------- responsive ---------- */
+  @media(max-width:880px){
+    .flow{grid-template-columns:1fr 1fr}
+    .step{border-bottom:1px solid rgba(255,255,255,.12)}
+    .step:nth-child(2n){border-right:none}
+    .step:nth-child(n+3){border-bottom:none}
+    .cards{grid-template-columns:1fr;max-width:620px;margin:0 auto}
+    .stickybar{display:block}
+  }
+  @media(max-width:560px){
+    body{font-size:16px}
+    section{padding:56px 0}
+    .bio{padding-top:72px}
+    .wrap{padding:0 20px}
+    .nav-inner{padding-block:8px}
+    .brand .logo-folder{height:28px}
+    .brand .logo-word{height:18px}
+    .hero{padding-bottom:52px}
+    .flow{grid-template-columns:1fr;border:none;background:none;border-radius:0}
+    .step{border:none!important;border-left:2px solid rgba(134,224,174,.45)!important;padding:20px 0 24px 22px}
+    .pull{margin:26px 0;padding-left:18px}
+    .vnb{padding:48px 0}
+    .panel{padding:28px 24px 30px}
+    .tcard{padding:24px 22px}
+    .foot-inner{flex-direction:column;align-items:flex-start}
+    .foot-meta{text-align:left}
+  }
+  @media(max-width:400px){
+    .brand .logo-folder{height:24px}
+    .brand .logo-word{height:15px}
+    .brand{gap:8px}
+    .nav .btn{padding:8px 12px;font-size:0.85rem;white-space:nowrap}
+  }
+  @media(max-width:360px){
+    .brand .logo-folder{height:22px}
+    .brand .logo-word{height:13px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#top">Skip to content</a>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top" aria-label="Condition Works home">
+      <img class="logo-folder" src="assets/logo-folder.png" alt="" width="156" height="144" fetchpriority="high" />
+      <img class="logo-word" src="assets/logo-wordmark.png" alt="Condition Works" width="450" height="48" fetchpriority="high" />
+    </a>
+    <a class="btn btn-primary" href="https://cal.com/conditionworks/introduction-meeting?ref=nav" target="_blank" rel="noopener">Book a call</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero" id="hero">
+    <div class="wrap hero-col">
+      <h1>You didn't go into business to do paperwork.</h1>
+      <p class="lede">It's the cost of bringing your skill and expertise to market. Condition Works looks at how your back office actually runs and hands you a clear direction: patch what you have, buy the right platform, or build something specifically for you.</p>
+      <p class="offer">The diagnostic is paid; the intro call is free.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://cal.com/conditionworks/introduction-meeting?ref=hero" target="_blank" rel="noopener">Book a free intro call</a>
+        <a class="btn btn-ghost" href="mailto:david@conditionworks.ai?subject=Tell%20me%20more%20about%20Condition%20Works">Email a question</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="recognition">
+    <div class="wrap col">
+      <span class="eyebrow">
+        <svg viewBox="0 0 17 15" aria-hidden="true"><path d="M1 3.5C1 2.7 1.7 2 2.5 2h3.3c.4 0 .78.16 1.06.44L8 4h6.5C15.3 4 16 4.7 16 5.5V12c0 .8-.7 1.5-1.5 1.5h-12C1.7 13.5 1 12.8 1 12V3.5Z" fill="#185D2E"/></svg>
+        The current reality
+      </span>
+      <h2>You're not the problem.</h2>
+      <p>Running a business is messy. You're not doing it wrong, you're just doing it all. You successfully grew your business, but the administrative burden grew with you. The systems you had in place when you started are costing you your most important asset, TIME.</p>
+      <p>You feel the mess. What are your options? Hire someone to handle it, or buy software. <strong>I spent over a decade selling back-office software</strong>, so I've helped owners make exactly this call.</p>
+      <p class="pull">Choosing the right path is hard. Making a change is even harder.</p>
+      <p>Now with AI, the options are only multiplying and more confusing than ever. "Hire or buy" isn't the whole menu anymore.</p>
+      <ul class="qlist">
+        <li><svg viewBox="0 0 17 15" aria-hidden="true"><path d="M1 3.5C1 2.7 1.7 2 2.5 2h3.3c.4 0 .78.16 1.06.44L8 4h6.5C15.3 4 16 4.7 16 5.5V12c0 .8-.7 1.5-1.5 1.5h-12C1.7 13.5 1 12.8 1 12V3.5Z" fill="#185D2E"/></svg>What's best for your business?</li>
+        <li><svg viewBox="0 0 17 15" aria-hidden="true"><path d="M1 3.5C1 2.7 1.7 2 2.5 2h3.3c.4 0 .78.16 1.06.44L8 4h6.5C15.3 4 16 4.7 16 5.5V12c0 .8-.7 1.5-1.5 1.5h-12C1.7 13.5 1 12.8 1 12V3.5Z" fill="#185D2E"/></svg>Better operational processes?</li>
+        <li><svg viewBox="0 0 17 15" aria-hidden="true"><path d="M1 3.5C1 2.7 1.7 2 2.5 2h3.3c.4 0 .78.16 1.06.44L8 4h6.5C15.3 4 16 4.7 16 5.5V12c0 .8-.7 1.5-1.5 1.5h-12C1.7 13.5 1 12.8 1 12V3.5Z" fill="#185D2E"/></svg>A tool adapted to how you work?</li>
+        <li><svg viewBox="0 0 17 15" aria-hidden="true"><path d="M1 3.5C1 2.7 1.7 2 2.5 2h3.3c.4 0 .78.16 1.06.44L8 4h6.5C15.3 4 16 4.7 16 5.5V12c0 .8-.7 1.5-1.5 1.5h-12C1.7 13.5 1 12.8 1 12V3.5Z" fill="#185D2E"/></svg>Something custom built just for you?</li>
+      </ul>
+      <p class="outro">Figuring out which path to take is the first thing we do. <a href="#how">Scroll to see how.</a></p>
+    </div>
+  </section>
+
+  <section class="how" id="how">
+    <div class="wrap">
+      <div class="how-head">
+        <span class="eyebrow">
+          <svg viewBox="0 0 17 15" aria-hidden="true"><path d="M1 3.5C1 2.7 1.7 2 2.5 2h3.3c.4 0 .78.16 1.06.44L8 4h6.5C15.3 4 16 4.7 16 5.5V12c0 .8-.7 1.5-1.5 1.5h-12C1.7 13.5 1 12.8 1 12V3.5Z" fill="#86E0AE"/></svg>
+          How we work
+        </span>
+        <h2>With you. For you.</h2>
+        <p>You can see the whole path from here, including where I charge. We decide if it makes sense to work together. At the end you own everything, no monthly recurring charge to me.</p>
+      </div>
+      <ol class="flow">
+        <li class="step">
+          <span class="num" aria-hidden="true">01</span>
+          <h3>A free call</h3>
+          <p>About 30 minutes. We learn more about each other and decide if we want to work together. If not a good fit, we part as friends. If we want to proceed, you receive a clear quote for the diagnostic.</p>
+        </li>
+        <li class="step">
+          <span class="num" aria-hidden="true">02</span>
+          <h3>The diagnostic <span class="fee" aria-hidden="true">$</span></h3>
+          <p>A deep dive into your current business. We map current operations, find where your time is being wasted, and determine what would actually help you. The diagnostic ends with clear guidance: patch, buy, or build. Full report is yours to keep.</p>
+        </li>
+        <li class="step">
+          <span class="num" aria-hidden="true">03</span>
+          <h3>The change <span class="fee" aria-hidden="true">$</span></h3>
+          <p>The most time-consuming and frustrating part of implementing a new system is the initial change. Leverage my experience helping business owners with digital transformation. Quicker setup, fewer headaches, less risk of a bad transition. Custom quote based on speed and complexity.</p>
+        </li>
+        <li class="step">
+          <span class="num" aria-hidden="true">04</span>
+          <h3>Yours to run</h3>
+          <p>No additional monthly retainer. No black-box software you don't understand. You own your new and improved process that saves you time and money.</p>
+        </li>
+      </ol>
+      <div class="how-cta">
+        <a class="btn btn-onnavy" href="https://cal.com/conditionworks/introduction-meeting?ref=mid" target="_blank" rel="noopener">Book a free intro call</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="bio">
+    <div class="wrap">
+      <div class="panel">
+        <span class="folder-tab">
+          <svg viewBox="0 0 17 15" aria-hidden="true"><path d="M1 3.5C1 2.7 1.7 2 2.5 2h3.3c.4 0 .78.16 1.06.44L8 4h6.5C15.3 4 16 4.7 16 5.5V12c0 .8-.7 1.5-1.5 1.5h-12C1.7 13.5 1 12.8 1 12V3.5Z" fill="#185D2E"/></svg>
+          Who you'd work with
+        </span>
+        <h2>David Campi</h2>
+        <p class="role">founder · condition works llc</p>
+        <p class="bio-p">I spent over a decade selling back-office software to small operators, watching what they bought, what they actually used, and what they quietly abandoned. Condition Works turns that judgment around to your side of the table: an outside look at how your business actually runs, and a straight answer about what to do next. Whatever we set up, you own it and can run it without me.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="get">
+    <div class="wrap">
+      <div class="get-head">
+        <span class="eyebrow">
+          <svg viewBox="0 0 17 15" aria-hidden="true"><path d="M1 3.5C1 2.7 1.7 2 2.5 2h3.3c.4 0 .78.16 1.06.44L8 4h6.5C15.3 4 16 4.7 16 5.5V12c0 .8-.7 1.5-1.5 1.5h-12C1.7 13.5 1 12.8 1 12V3.5Z" fill="#185D2E"/></svg>
+          The Operator's Diagnostic
+        </span>
+        <h2>Clear map and guide.</h2>
+        <p><strong>This report is yours to keep.</strong> Useful whether you hire me to help implement or not.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <span class="ctab" aria-hidden="true">A.</span>
+          <h3>Your operations, mapped</h3>
+          <p>Current state of operations. Clearly identify the gaps to close to reach your goals. Know what is worth spending time to fix. A path to save the most time and money.</p>
+        </article>
+        <article class="card">
+          <span class="ctab" aria-hidden="true">B.</span>
+          <h3>Software &amp; AI clarity</h3>
+          <p>AI has changed software. The hype crowd wants you to believe that the answer is always AI. Sometimes it is, sometimes it isn't. I'll provide clarity on how AI applies to your business and fits into the software equation.</p>
+        </article>
+        <article class="card">
+          <span class="ctab" aria-hidden="true">C.</span>
+          <h3>Yours to own</h3>
+          <p>The recommendation is written so you can act on it alone: a complete guide. At this point we decide if you want to leverage me to make a change going forward.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="vnb">
+    <div class="wrap">
+      <p>I don't take commission from any software or AI company. You get a vendor-neutral opinion.</p>
+    </div>
+  </div>
+
+  <section class="fit">
+    <div class="wrap">
+      <div class="fit-head">
+        <span class="eyebrow">
+          <svg viewBox="0 0 17 15" aria-hidden="true"><path d="M1 3.5C1 2.7 1.7 2 2.5 2h3.3c.4 0 .78.16 1.06.44L8 4h6.5C15.3 4 16 4.7 16 5.5V12c0 .8-.7 1.5-1.5 1.5h-12C1.7 13.5 1 12.8 1 12V3.5Z" fill="#185D2E"/></svg>
+          Fit check
+        </span>
+        <h2>Let's make sure this is right.</h2>
+        <p>If you'd pay for a straight answer before committing to anything, you're in the right place. This probably isn't for you if:</p>
+      </div>
+      <div class="fit-card">
+        <ul>
+          <li><svg viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M5.5 5.5l7 7M12.5 5.5l-7 7" stroke="#475149" stroke-width="1.7" stroke-linecap="round"/></svg>You want a managed service, someone to run the back office so you never touch it.</li>
+          <li><svg viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M5.5 5.5l7 7M12.5 5.5l-7 7" stroke="#475149" stroke-width="1.7" stroke-linecap="round"/></svg>The business is still a side project without real revenue behind it.</li>
+          <li><svg viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M5.5 5.5l7 7M12.5 5.5l-7 7" stroke="#475149" stroke-width="1.7" stroke-linecap="round"/></svg>You want new tools, but nothing about how you work to change.</li>
+          <li><svg viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M5.5 5.5l7 7M12.5 5.5l-7 7" stroke="#475149" stroke-width="1.7" stroke-linecap="round"/></svg>You want to be sold software without anyone looking at how the work actually flows.</li>
+        </ul>
+      </div>
+      <p class="fit-out">If none of those are you, <a href="#book">we should talk</a>.</p>
+    </div>
+  </section>
+
+  <section class="close" id="book">
+    <div class="wrap close-col">
+      <span class="eyebrow">
+        <svg viewBox="0 0 17 15" aria-hidden="true"><path d="M1 3.5C1 2.7 1.7 2 2.5 2h3.3c.4 0 .78.16 1.06.44L8 4h6.5C15.3 4 16 4.7 16 5.5V12c0 .8-.7 1.5-1.5 1.5h-12C1.7 13.5 1 12.8 1 12V3.5Z" fill="#86E0AE"/></svg>
+        The next step
+      </span>
+      <h2>Start with the free call.</h2>
+      <figure class="tcard">
+        <blockquote>"David simplified the admin that was eating my nights: invoices, scheduling, follow-ups. I've been able to add new offerings without adding new mess, and I didn't have to hire the part-time admin I thought was inevitable."</blockquote>
+        <figcaption>
+          <span class="who">Pamela</span>
+          <span class="meta">Produced by Pamela · corporate events</span>
+        </figcaption>
+      </figure>
+      <p class="ask">30 minutes, booked online. You'll hear how the diagnostic works and what it costs; I'll hear how your business runs. <strong>If it's not a fit, I'll say so on the call, and it will have cost you nothing.</strong></p>
+      <div class="actions">
+        <a class="btn btn-onhunter" href="https://cal.com/conditionworks/introduction-meeting?ref=close" target="_blank" rel="noopener">Book the free call</a>
+        <a class="btn btn-ghost-inv" href="mailto:david@conditionworks.ai?subject=Tell%20me%20more%20about%20Condition%20Works">Email a question</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="foot">
+  <div class="wrap foot-inner">
+    <div class="foot-brand">
+      <img class="logo-folder" src="assets/logo-folder.png" alt="" width="156" height="144" loading="lazy" />
+      <img class="logo-word" src="assets/logo-wordmark.png" alt="Condition Works LLC" width="450" height="48" loading="lazy" />
+    </div>
+    <div class="foot-meta">
+      Structure for skilled work.<br />
+      <a href="mailto:david@conditionworks.ai">david@conditionworks.ai</a> · © 2026 Condition Works LLC
+    </div>
+  </div>
+</footer>
+
+<div class="stickybar" id="stickybar">
+  <a class="btn" href="https://cal.com/conditionworks/introduction-meeting?ref=sticky" target="_blank" rel="noopener">Book the free call</a>
+</div>
+
+<script>
+(function(){
+  var d = document;
+  d.documentElement.classList.add('js');
+
+  var nav = d.getElementById('nav');
+  var onScroll = function(){ nav.classList.toggle('scrolled', window.scrollY > 8); };
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  var bar = d.getElementById('stickybar');
+  var hero = d.getElementById('hero');
+  var book = d.getElementById('book');
+  var foot = d.getElementById('foot');
+  if (bar && hero && book && foot && 'IntersectionObserver' in window) {
+    var heroOut = false, closeIn = false, footIn = false;
+    var update = function(){ bar.classList.toggle('show', heroOut && !closeIn && !footIn); };
+    new IntersectionObserver(function(en){ en.forEach(function(e){ heroOut = !e.isIntersecting; }); update(); }, {threshold:0}).observe(hero);
+    new IntersectionObserver(function(en){ en.forEach(function(e){ closeIn = e.isIntersecting; }); update(); }, {threshold:0}).observe(book);
+    new IntersectionObserver(function(en){ en.forEach(function(e){ footIn = e.isIntersecting; }); update(); }, {threshold:0}).observe(foot);
+  }
+})();
+</script>
+</body>
+</html>
